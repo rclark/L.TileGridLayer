@@ -5,6 +5,8 @@ viewable tiles according to the Spherical Mercator tiling scheme.
 
 [View an example map](https://rclark.github.io/L.TileGridLayer/example)
 
+[View example HTML](https://github.com/rclark/L.TileGridLayer/blob/gh-pages/example/index.html)
+
 ## Usage
 
 You must include the [spherical-mercator](http://github.com/mapbox/node-sphericalmercator)
