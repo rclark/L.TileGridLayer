@@ -60,7 +60,10 @@ L.TileGridLayer = L.Class.extend({
                     }
                 });
 
-                icon = L.divIcon({className: 'tile-grid-label', html: label});
+                icon = L.divIcon({
+                    className: 'tile-grid-label',
+                    html: '<div class="tile-grid-label-container"><div class="tile-grid-label-inner">' + label + '</div></div>'
+                });
                 this._markers.push(
                     L.marker(
                         [

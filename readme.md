@@ -33,4 +33,12 @@ You may wish to include a little CSS to improve the visibility of the tile label
      1px -1px #fff,
      1px  1px #fff;
 }
+.tile-grid-label-container {
+  display: inline-block;
+}
+.tile-grid-label-inner {
+  display: inline-block;
+  padding-left: 12px;
+  margin-left: -50%;
+}
 ```

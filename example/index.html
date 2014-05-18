@@ -7,7 +7,7 @@
     <link href='//api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
     <style>
       html, body { height: 100%; width: 100%; }
-      body { position: relative; }
+      body { position: relative; padding: 0; margin: 0; }
       #map {
         position: absolute;
         top: 0; bottom: 0;
@@ -20,6 +20,14 @@
           -1px -1px #fff,
            1px -1px #fff,
            1px  1px #fff;
+      }
+      .tile-grid-label-container {
+        display: inline-block;
+      }
+      .tile-grid-label-inner {
+        display: inline-block;
+        padding-left: 12px;
+        margin-left: -50%;
       }
     </style>
   </head>
