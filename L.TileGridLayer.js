@@ -43,6 +43,17 @@ L.TileGridLayer = L.Class.extend({
                 tileBounds = this._sm.bbox(x, y, z);
                 label = [z,x,y].join('/');
 
+                var index = '';
+                for (var zoom = z; zoom > 0; zoom--) {
+                    var b = 0;
+                    var mask = 1 << (zoom - 1);
+                    if ((x & mask) !== 0) b++;
+                    if ((y & mask) !== 0) b += 2;
+                    index += b.toString();
+                }
+
+                label += '<br/>' + index; 
+
                 this._layer.addData({
                     type: 'Feature',
                     properties: {
