@@ -38,7 +38,9 @@ You may wish to include a little CSS to improve the visibility of the tile label
 }
 .tile-grid-label-inner {
   display: inline-block;
+  text-align: center;
   padding-left: 12px;
   margin-left: -50%;
+  margin-top: calc(-50% + 12px)
 }
 ```

@@ -30,7 +30,7 @@ L.TileGridLayer = L.Class.extend({
             bbox = map.getBounds().toBBoxString().split(','),
             z = map.getZoom(),
             coords = this._sm.xyz(bbox, z),
-            tileBounds, x, y, icon, label;
+            tileBounds, pxBounds, pxCenter, center, x, y, icon, label;
 
         this._layer.clearLayers();
         this._markers.forEach(function(marker) {
@@ -41,6 +41,25 @@ L.TileGridLayer = L.Class.extend({
         for (x = coords.minX; x <= coords.maxX; x++) {
             for (y = coords.minY; y <= coords.maxY; y++) {
                 tileBounds = this._sm.bbox(x, y, z);
+                console.log(tileBounds);
+
+                pxBounds = [
+                    this._sm.px([tileBounds[0], tileBounds[1]], z)[0],
+                    this._sm.px([tileBounds[0], tileBounds[1]], z)[1],
+                    this._sm.px([tileBounds[2], tileBounds[3]], z)[0],
+                    this._sm.px([tileBounds[2], tileBounds[3]], z)[1]
+                ];
+                console.log(pxBounds);
+
+                pxCenter = [
+                    pxBounds[0] + (pxBounds[2] - pxBounds[0]) / 2,
+                    pxBounds[1] + (pxBounds[3] - pxBounds[1]) / 2
+                ];
+                console.log(pxCenter);
+
+                center = this._sm.ll(pxCenter, z);
+                console.log(center);
+
                 label = [z,x,y].join('/');
 
                 var index = '';
@@ -76,13 +95,7 @@ L.TileGridLayer = L.Class.extend({
                     html: '<div class="tile-grid-label-container"><div class="tile-grid-label-inner">' + label + '</div></div>'
                 });
                 this._markers.push(
-                    L.marker(
-                        [
-                            tileBounds[1] + (tileBounds[3] - tileBounds[1]) / 2,
-                            tileBounds[0] + (tileBounds[2] - tileBounds[0]) / 2
-                        ],
-                        { icon: icon }
-                    ).addTo(map)
+                    L.marker([center[1], center[0]], { icon: icon }).addTo(map)
                 );
             }
         }
